@@ -4,10 +4,9 @@
         <!-- vscode상에서는 v-bind도 명시 해주어야 에러체크안남 -->
         <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
           <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
-          v-on:click="toggleComplete(todoItem, index)"></i>
-          <span v-bind:class="{textCompleted: todoItem.completed}">
-            {{ todoItem.item }}
-          </span>
+              v-on:click="toggleComplete(todoItem, index)"></i>
+          <!-- completed : true일때만 뜨게 -->
+          <span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
           <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
             <i class="fas fa-trash-alt"></i>
           </span>
