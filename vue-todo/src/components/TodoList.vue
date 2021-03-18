@@ -2,7 +2,7 @@
   <div>
       <ul>
         <!-- vscode상에서는 v-bind도 명시 해주어야 에러체크안남 -->
-        <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+        <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
           <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
               v-on:click="toggleComplete(todoItem, index)"></i>
           <!-- completed : true일때만 뜨게 -->
@@ -17,23 +17,8 @@
 
 <script>
 export default {
-  data: function() {
-    return{
-      todoItems: []
-    }
-  },
-  created: function() {
-    console.log('created');
-    if(localStorage.length > 0){
-      for ( var i = 0; i < localStorage.length; i++){
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server'){
-          // this.todoItems.push(localStorage.key(i));
-          // console.log(localStorage.key(i));
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-      }
-    }
-  },
+  props: ['propsdata'],
+
   methods: {
     removeTodo: function(todoItem, index){
       console.log(todoItem, index);
