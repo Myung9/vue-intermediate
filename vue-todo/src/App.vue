@@ -5,7 +5,7 @@
     <todo-input v-on:addTodoItem="addOneItem"></todo-input>
     <!-- <todo-list v-bind=내려보낼 프롭스 속성 이름="현재 위치의 컴포넌트 데이터 속성"></todo-list> -->
     <todo-list v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"></todo-list>
-    <todo-footer></todo-footer>
+    <todo-footer v-on:clearAll="clearAllItems"></todo-footer>
   </div>
 </template>
 
@@ -40,6 +40,10 @@ export default {
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     },
+    clearAllItems: function() {
+      localStorage.clear();
+      this.todoItems = [];
+    }
   },
   created: function() {
     if(localStorage.length > 0){
